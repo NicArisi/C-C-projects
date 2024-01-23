@@ -20,7 +20,7 @@ int main() {
 	HardDrive *NUm1 = new HardDrive(1, 1000, 4);
 	NUm1->AppendFile(file1);
 	std::cout << NUm1->fileBook.size() << std::endl;
-	std::vector<File*> fileCollectionMain = NUm1->ReturnFilesOfName("nums.txt");
+	std::vector<File*> fileCollectionMain = NUm1->ReturnFilesOfName("txt");
 	for (int i = 0; i < fileCollectionMain.size(); i++) {
 		std::cout << "The Data of this name index is "
 				<< fileCollectionMain[i]->data << std::endl;

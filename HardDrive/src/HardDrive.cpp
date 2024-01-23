@@ -27,17 +27,20 @@ void HardDrive::AppendFile(File *file) {
 		}
 	}
 }
-std::vector<File*> HardDrive::ReturnFilesOfName(std::string name) {
+std::vector<File*> HardDrive::ReturnFilesOfName(std::string name) {//searches through for strings that have substrings of name
 	std::vector<File*> fileCollection;
+	std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 	for (int i = 0; i < fileBook.size(); i++) {
-		if (fileBook[i]->Name == name) {
+		std::string fileI = fileBook[i]->Name;
+		std::transform(fileI.begin(), fileI.end(), fileI.begin(), ::tolower);
+		if (fileI.find(name) != std::string::npos) {
 			fileCollection.push_back(fileBook[i]);
 		}
 	}
 	return fileCollection;
 }
 int HardDrive::IndexFinder(std::string input) {
-	std::transform(input.begin(), input.end(), input.begin(), ::toupper);
+	std::transform(input.begin(), input.end(), input.begin(), ::tolower);
 	int size = fileBook.size();
 	if (size <= 0) {
 		return 0;
@@ -47,15 +50,21 @@ int HardDrive::IndexFinder(std::string input) {
 	while (lowerBound < upperBound) {
 		int midPoint = (lowerBound + upperBound) / 2;
 		std::string MidPoint = fileBook[midPoint]->Name;
-		std::transform(MidPoint.begin(), MidPoint.end(), MidPoint.begin(),
-				::toupper);
+		std::transform(MidPoint.begin(), MidPoint.end(), MidPoint.begin(),::tolower);
 		if (MidPoint.compare(input) < 0) {
 			lowerBound = midPoint + 1;
 		} else {
 			upperBound = midPoint;
 		}
 	}
-	return abs(fileBook[lowerBound]->Name.compare(input));
+	std::string UpperStr = fileBook[upperBound]->Name;
+	std::transform(UpperStr.begin(), UpperStr.end(), UpperStr.begin(),::tolower);
+	if (UpperStr.compare(input) > 0) {
+		return lowerBound;
+	} else {
+		return upperBound + 1;
+	}
+
 }
 HardDrive::~HardDrive() {
 	for (int i = 0; i < fileBook.size(); i++) {
