@@ -4,11 +4,13 @@ HardDrive::HardDrive(int numDisks, int spacePerDisk, int colums) {
 	this->numDisks = numDisks;
 	this->spacePerDisk = spacePerDisk;
 	this->colums = colums;
+	int SpaceInBytes=0;
 }
 void HardDrive::FileBookLinkedFileAppender(File *file) {
 	for (int i = 0; i < file->Files.size(); i++) {
 		fileBook.insert(fileBook.begin() + IndexFinder(file->Files[i]->Name),
 				file->Files[i]);
+		SpaceInBytes=SpaceInBytes+sizeof(file->Files[i]->data);
 		if (file->Files[i]->Files.size() > 0) {
 			FileBookLinkedFileAppender(file->Files[i]);
 		}
@@ -16,6 +18,7 @@ void HardDrive::FileBookLinkedFileAppender(File *file) {
 }
 void HardDrive::AppendFile(File *file) {
 	fileBook.insert(fileBook.begin() + IndexFinder(file->Name), file);
+	SpaceInBytes=SpaceInBytes+sizeof(file->data);
 	if (file->Files.size() > 0) {
 		for (int i = 0; i < file->Files.size(); i++) {
 			fileBook.insert(
