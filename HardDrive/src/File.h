@@ -4,7 +4,7 @@
 #define File_h
 class File {
 public:
-	int ID; //should take up space in the hard drive book, not the drives themselves
+	int MotorAngle; //should take up space in the hard drive book, not the drives themselves
 	std::string data;
 	std::string Name;
 	std::vector<File*> Files; //only use if this file is actaully a collection of files
@@ -13,6 +13,7 @@ public:
 	File(std::string Name);
 	void changeData(std::string Data);
 	void addFiles(File *file);
+	std::vector<File*> RemoveFiles(File *file);
 	~File();
 };
 #endif

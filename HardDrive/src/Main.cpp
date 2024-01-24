@@ -28,6 +28,6 @@ int main() {
 		std::cout << "The Name of " << i << " index is "
 				<< NUm1->fileBook[i]->Name << std::endl;
 	}
-	std::cout << "The size of NUm1 is " << NUm1->SpaceInBytes<< std::endl << " bytes";
+	std::cout << "The size of NUm1 is " << NUm1->SpaceInBytes << " bytes"<< std::endl;
 	//delete (NUm1);
 }

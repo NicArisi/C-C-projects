@@ -69,6 +69,20 @@ int HardDrive::IndexFinder(std::string input) {
 	}
 
 }
+void HardDrive::RemoveFileOrFiles(std::vector<File*> input){
+	int inputIterator = input.size()-1;
+	int fileBookIterator=0;
+	while(inputIterator<input.size()){
+		while(input[inputIterator]!=fileBook[fileBookIterator]){
+			fileBookIterator++;
+		}//once occurs, exit loop and do this
+		File* filedel = fileBook[fileBookIterator];
+		fileBook.erase(fileBook.begin()+fileBookIterator);
+		delete(filedel);
+		inputIterator--;
+		fileBookIterator=0;
+	}
+}
 HardDrive::~HardDrive() {
 	for (int i = 0; i < fileBook.size(); i++) {
 		delete (fileBook[i]);

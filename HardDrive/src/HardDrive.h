@@ -18,6 +18,7 @@ public:
 	void reorganize(); //reorganize so that files in reference of each other are in close proximity or fast to get to  v
 	void FileBookLinkedFileAppender(File *file);
 	int IndexFinder(std::string input);
+	void RemoveFileOrFiles(std::vector<File*> input);
 	~HardDrive();
 };
 #endif
