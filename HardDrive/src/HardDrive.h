@@ -11,14 +11,14 @@ public:
 	int numDisks; //the number of disks in the hard drive
 	int spacePerDisk; //the space avaible per disk
 	int colums; //how many lines of data per disk
-	int SpaceInBytes;
+	int SpaceInBytes=0;
 	HardDrive(int numDisks, int spacePerDisk, int colums);
 	void AppendFile(File *input); //add file
 	std::vector<File*> ReturnFilesOfName(std::string name); //return the ID of the file of where they are in the drive, binary search function, populate a main's vector, assume that the file directory is in apahabetical order or string number order
 	void reorganize(); //reorganize so that files in reference of each other are in close proximity or fast to get to  v
 	void FileBookLinkedFileAppender(File *file);
 	int IndexFinder(std::string input);
-	void RemoveFileOrFiles(std::vector<File*> input);
+	void RemoveFileOrFiles(File*input);
 	~HardDrive();
 };
 #endif
